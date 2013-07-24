@@ -4,6 +4,13 @@ import java.io.PrintStream;
 import java.util.Collection;
 
 public class Library {
+/* Variable Members */
+	//One for books
+	//One for movies
+	//One for music albums
+	
+	//HashMap of TreeSets?
+	
 	
 /* general methods */
 	
