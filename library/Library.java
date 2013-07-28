@@ -2,15 +2,45 @@ package library;
 
 import java.io.PrintStream;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Library {
 /* Variable Members */
-	//One for books
-	//One for movies
-	//One for music albums
+	private	Map<String, Set<Book>>
+				bTitleMap, bMakerMap;
+	private	Map<String, Set<Movie>>
+				moTitleMap, moMakerMap, moCastMap;
+	private	Map<String, Set<MusicAlbum>>
+				muTitleMap, muMakerMap, muMembMap;
+	private Map<String, Set<Item>>
+				kwMap;
+	private	Set<Item>			bookS;
+	private	Set<Item>			movieS;
+	private	Set<Item>			albumS;
 	
-	//HashMap of TreeSets?
-	
+/* Constructors */
+	public Library() {
+		bTitleMap = new HashMap<>();
+		moTitleMap = new HashMap<>();
+		muTitleMap = new HashMap<>();
+		
+		bMakerMap = new HashMap<>();
+		moMakerMap = new HashMap<>();
+		muMakerMap = new HashMap<>();
+		
+		moCastMap = new HashMap<>();
+		muMembMap = new HashMap<>();
+		
+		kwMap = new HashMap<>();
+		
+		bookS = new TreeSet<>();
+		movieS = new TreeSet<>();
+		albumS = new TreeSet<>();
+	}
 	
 /* general methods */
 	
@@ -21,9 +51,21 @@ public class Library {
 	
 	// print an item from this library to the output stream provided
 	public void printItem(PrintStream out, Item item) {
-		
+		out.print(item.toString());
 	}
 	
+//	private void addToMap(String disKey, Item disValue, Map<String, Set<Item>> disMap) {
+//		if(!(disMap.containsKey(disKey))) {
+//			Set<Item> temp = new TreeSet<>();
+//			temp.add(disValue);
+//			disMap.put(disKey, temp);
+//		}
+//		else {
+//			Set<Item> temp = disMap.get(disKey);
+//			temp.add(disValue);
+//			disMap.put(disKey, temp);
+//		}
+//	}
 	
 	
 	
@@ -32,7 +74,26 @@ public class Library {
 	
 	// adds a book to the library
 	public Item addBook(String title, String author, int nPages, String... keywords) {
-		return null;
+		Book disBook = new Book(title, author, nPages, keywords);
+		
+		bookS.add(disBook);
+		
+//		addToMap(disBook, title, bTitleMap);
+		
+		if(!(bTitleMap.containsKey(title))) {
+			Set<Book> temp = new TreeSet<>();
+			temp.add(disBook);
+			bTitleMap.put(title, temp);
+		}
+		else {
+			Set<Book> temp = bTitleMap.get(title);
+			temp.add(disBook);
+			bTitleMap.put(title, temp);
+		}
+		
+		// Add it to the all the stuff..... 
+		
+		return disBook;
 	}
 	
 	// removes a book from the library (only needed for Premium version)
@@ -47,7 +108,7 @@ public class Library {
 	
 	// returns all of the books in the library
 	public Collection<Item> books() {
-		return null;
+		return bookS;
 	}
 	
 	
@@ -58,11 +119,31 @@ public class Library {
 	
 	// adds a music album to the library
 	public Item addMusicAlbum(String title, String band, int nSongs, String... keywords) {
-		return null;
+		MusicAlbum disAlbum = new MusicAlbum(title, band, nSongs, keywords);
+		
+		albumS.add(disAlbum);
+		
+//		addToMap(disBook, title, bTitleMap);
+		
+		if(!(muTitleMap.containsKey(title))) {
+			Set<MusicAlbum> temp = new TreeSet<>();
+			temp.add(disAlbum);
+			muTitleMap.put(title, temp);
+		}
+		else {
+			Set<MusicAlbum> temp = muTitleMap.get(title);
+			temp.add(disAlbum);
+			muTitleMap.put(title, temp);
+		}
+		
+		// Add it to the all the stuff..... 
+		
+		return disAlbum;
 	}
 
 	// adds the specified band members to a music album
 	public void addBandMembers(Item album, String... members) {
+		album.addMembers(members);
 	}
 	
 	// removes a music album from the library (only needed for Premium version)
@@ -82,7 +163,7 @@ public class Library {
 	
 	// returns all of the music albums in the library
 	public Collection<Item> musicAlbums() {
-		return null;
+		return albumS;
 	}
 	
 	
@@ -93,11 +174,31 @@ public class Library {
 	
 	// adds a movie to the library
 	public Item addMovie(String title, String director, int nScenes, String... keywords) {
-		return null;
+		Movie disMovie = new Movie(title, director, nScenes, keywords);
+		
+		movieS.add(disMovie);
+		
+//		addToMap(disBook, title, bTitleMap);
+		
+		if(!(moTitleMap.containsKey(title))) {
+			Set<Movie> temp = new TreeSet<>();
+			temp.add(disMovie);
+			moTitleMap.put(title, temp);
+		}
+		else {
+			Set<Movie> temp = moTitleMap.get(title);
+			temp.add(disMovie);
+			moTitleMap.put(title, temp);
+		}
+		
+		// Add it to the all the stuff..... 
+		
+		return disMovie;
 	}
 
 	// adds the specified actors to a movie
 	public void addCast(Item movie, String... members) {
+		movie.addtoCast(members);
 	}
 
 	// removes a movie from the library (only needed for Premium version)
@@ -117,6 +218,6 @@ public class Library {
 	
 	// returns all of the movies in the library
 	public Collection<Item> movies() {
-		return null;
+		return movieS;
 	}	
 }

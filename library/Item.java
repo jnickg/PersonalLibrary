@@ -7,31 +7,40 @@ package library;
 import java.util.Set;
 import java.util.TreeSet;
 
-public abstract class Item {
+public abstract class Item
+		implements Comparable<Item>{
 /* Variable Members */
 	public		String		title;
 	public		String		maker;
-	public		int			length;
 	public		Set<String> keywords;
 	
 /* Constructors */
 	Item() {
 		title = "";
 		maker = "";
-		length = 0;
 		
 		keywords = new TreeSet<>();
 		keywords.add("none");
 	}
 	
-	Item(String tit, String mkr, Integer len, String ... kw) {
+	Item(String tit, String mkr, String ... kw) {
 		title = tit;
 		maker = mkr;
-		length = len;
 		
 		keywords = new TreeSet<>();
 		for(String s: kw) keywords.add(s.toLowerCase());
 	}
+	
+/* General Methods */
+	
+	@Override
+	public int compareTo(Item other) {
+		int title  = this.title.compareTo(other.getTitle());
+		return title==0 ? this.maker.compareTo(other.getTitle()) : title;
+	}
+	
+	@Override
+	public abstract String toString();
 
 /* Search Methods */
 	public boolean matchTit(String tit) {
@@ -65,15 +74,6 @@ public abstract class Item {
 
 	public void setMaker(String maker) {
 		this.maker = maker;
-	}
-
-/* Length Methods */
-	public int getLength() {
-		return length;
-	}
-
-	public void setLength(int length) {
-		this.length = length;
 	}
 
 /* Keywords Methods */
