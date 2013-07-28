@@ -82,6 +82,11 @@ public abstract class Item
 		for(String s: keywords)	kw.append(s + " ");
 		return kw.toString();
 	}
+	
+	// Returns a set of Kanye Wests. As if one weren't too many.
+	public Set<String>getKWset() {
+		return keywords;
+	}
 
 	public void setKeywords(String ... kw) {
 		keywords.clear();

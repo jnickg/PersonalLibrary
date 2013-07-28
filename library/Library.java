@@ -3,7 +3,6 @@ package library;
 import java.io.PrintStream;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
@@ -94,14 +93,28 @@ public class Library {
 	
 	// removes a book from the library (only needed for Premium version)
 	public boolean removeBook(String title) {
-//		if (bTitleMap.containsKey(title)) {
-//			Set<Item> temp = bTitleMap.get(title);
-//			bTitleMap.remove(title);
+		if (bTitleMap.containsKey(title)) {
+			//Get every book with that title
+			Set<Item> temp = bTitleMap.remove(title);
+			if (bookS.removeAll(temp)) return true;
+			// The following should only loop once, but the data structure allows
+			// for multiple books with the same name
 //			for (Item i: temp) {
-//				bookS.remove(i);
+//				//Remove itself from the keyword mapping
+////				Set<String> kwords = i.getKWset();
+////				for(String kw: kwords) {
+////					kwMap.get(kw).remove(i);
+////				}
+//				//Remove itself from the big bad set. 
+////				bookS.remove(i);
 //			}
-//			return true;
-//		}
+			
+			//Remove those books from  the title map
+
+			
+
+			return false;
+		}
 		return false;
 	}
 	
