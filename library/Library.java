@@ -65,6 +65,14 @@ public class Library {
 		}
 	}
 	
+//	private void rmvFromMap(Map<String, Set<Item>> disMap, Item disValue, String... disKey) {
+//		for(String k: disKey) {
+//			if(disMap.containsKey(k)) {
+//				Set<Item> temp = disMap.get(k);
+//			}
+//		}
+//	}
+	
 	
 	
 	
@@ -86,6 +94,14 @@ public class Library {
 	
 	// removes a book from the library (only needed for Premium version)
 	public boolean removeBook(String title) {
+//		if (bTitleMap.containsKey(title)) {
+//			Set<Item> temp = bTitleMap.get(title);
+//			bTitleMap.remove(title);
+//			for (Item i: temp) {
+//				bookS.remove(i);
+//			}
+//			return true;
+//		}
 		return false;
 	}
 	
