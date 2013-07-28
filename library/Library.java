@@ -124,6 +124,10 @@ public class Library {
 	// adds the specified band members to a music album
 	public void addBandMembers(Item album, String... members) {
 		((MusicAlbum)album).addMembers(members);
+		
+		for(String m: members) {
+			addToMap(muMembMap, album, m);
+		}
 	}
 	
 	// removes a music album from the library (only needed for Premium version)
@@ -139,7 +143,8 @@ public class Library {
 	
 	// returns all of the music albums by the specified musician
 	public Collection<Item> musicByMusician(String musician) {
-		return null;
+		if (muMembMap.containsKey(musician)) return muMembMap.get(musician);
+		else return null;
 	}
 	
 	// returns all of the music albums in the library
@@ -171,6 +176,10 @@ public class Library {
 	// adds the specified actors to a movie
 	public void addCast(Item movie, String... members) {
 		((Movie)movie).addtoCast(members);
+		
+		for(String m: members) {
+			addToMap(moCastMap, movie, m);
+		}
 	}
 
 	// removes a movie from the library (only needed for Premium version)
@@ -186,7 +195,8 @@ public class Library {
 	
 	// returns all of the movies by the specified actor
 	public Collection<Item> moviesByActor(String actor) {
-		return null;
+		if (moCastMap.containsKey(actor)) return moCastMap.get(actor);
+		else return null;
 	}
 	
 	// returns all of the movies in the library
