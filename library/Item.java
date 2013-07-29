@@ -28,7 +28,7 @@ public abstract class Item
 		maker = mkr;
 		
 		keywords = new TreeSet<>();
-		for(String s: kw) keywords.add(s.toLowerCase());
+		for(String s: kw) keywords.add(s);
 	}
 	
 /* General Methods */
