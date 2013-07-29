@@ -93,37 +93,37 @@ public class Library {
 	
 	// removes a book from the library (only needed for Premium version)
 	public boolean removeBook(String title) {
-//		if (bTitleMap.containsKey(title)) {
-//			//Get every book with that title
-//			Set<Item> temp = bTitleMap.remove(title);
-//			
-//// TESTING CODE TO MAKE SURE TEMP ACTUALLY CONTAINS SOMETHING
-////			for(Item i: temp) {
-////				System.out.println(i.toString());
-////			}
-//			
-//// NEITHER OF THESE WORK
-////			for(Item i: temp) bookS.remove(i);
-////			if (bookS.removeAll(temp)) return true;
-//			
-//// The following should only loop once, but the data structure allows
-//// for multiple books with the same name.
-////			for (Item i: temp) {
-////				//Remove itself from the keyword mapping
-//////				Set<String> kwords = i.getKWset();
-//////				for(String kw: kwords) {
-//////					kwMap.get(kw).remove(i);
-//////				}
-////				//Remove itself from the big bad set. 
-//////				bookS.remove(i);
-////			}
-//			
-//			//Remove those books from  the title map
-//
-//			
-//
-//			return true;
-//		}
+		if (bTitleMap.containsKey(title)) {
+			//Get every book with that title
+			Set<Item> temp = bTitleMap.remove(title);
+			
+// TESTING CODE TO MAKE SURE TEMP ACTUALLY CONTAINS SOMETHING
+//			for(Item i: temp) {
+//				System.out.println(i.toString());
+//			}
+			
+// NEITHER OF THESE WORK
+//			for(Item i: temp) bookS.remove(i);
+			if (bookS.removeAll(temp)) return true;
+			
+// The following should only loop once, but the data structure allows
+// for multiple books with the same name.
+//			for (Item i: temp) {
+//				//Remove itself from the keyword mapping
+////				Set<String> kwords = i.getKWset();
+////				for(String kw: kwords) {
+////					kwMap.get(kw).remove(i);
+////				}
+//				//Remove itself from the big bad set. 
+////				bookS.remove(i);
+//			}
+			
+			//Remove those books from  the title map
+
+			
+
+			return true;
+		}
 		return false;
 	}
 	
