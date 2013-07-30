@@ -56,8 +56,12 @@ class Movie extends Item {
 	public String getCast() {
 		// Add commas
 		StringBuilder cst = new StringBuilder();
-		for(String s: cast) cst.append(s + " ");
-		return cst.toString();
+		for(String s: cast) cst.append(s + ", ");
+		String rtn = cst.toString();
+		// Trim extra commas
+		if(rtn.endsWith(", "));
+		rtn = rtn.substring(0, rtn.lastIndexOf(", "));
+		return rtn;
 	}	
 	
 	public Set<String> getCastSet() {

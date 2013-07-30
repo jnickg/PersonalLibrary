@@ -79,8 +79,13 @@ public abstract class Item
 /* Keywords Methods */
 	public String getKeywords() {
 		StringBuilder kw = new StringBuilder();
-		for(String s: keywords)	kw.append(s + " ");
-		return kw.toString();
+		// Add all keywords
+		for(String s: keywords)	kw.append(s + ", ");
+		String rtn = kw.toString();
+		// Trim extra commas
+		if(rtn.endsWith(", "));
+		rtn = rtn.substring(0, rtn.lastIndexOf(", "));
+		return rtn;
 	}
 	
 	// Returns a set of Kanye Wests. As if one weren't too many.

@@ -56,8 +56,12 @@ class MusicAlbum extends Item {
 	public String getMembers() {
 		// Insert proper commas
 		StringBuilder mem = new StringBuilder();
-		for(String s: members) mem.append(s + " ");
-		return mem.toString();
+		for(String s: members) mem.append(s + ", ");
+		String rtn = mem.toString();
+		// Trim extra commas
+		if(rtn.endsWith(", "));
+		rtn = rtn.substring(0, rtn.lastIndexOf(", "));
+		return rtn;
 	}
 	
 	public Set<String> getMemberSet() {
