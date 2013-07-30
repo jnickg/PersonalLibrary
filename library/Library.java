@@ -39,7 +39,10 @@ public class Library {
 	
 /* general methods */
 	
-	// returns all of the items which have the specified keyword
+	/** Returns all of the items which have the specified keyword
+	 * @param	keyword	the keyword to be searched for
+	 * @return	a Collection of Items matching that keyword, otherwise null
+	 */
 	public Collection<Item> itemsForKeyword(String keyword) {
 		if (kwMap.containsKey(keyword)) return kwMap.get(keyword);
 		else return null;
