@@ -93,38 +93,25 @@ public class Library {
 	
 	// removes a book from the library (only needed for Premium version)
 	public boolean removeBook(String title) {
+		boolean success = false;
 		if (bTitleMap.containsKey(title)) {
-			//Get every book with that title
+			// Get every book with that title and remove from title map
 			Set<Item> temp = bTitleMap.remove(title);
-			
-// TESTING CODE TO MAKE SURE TEMP ACTUALLY CONTAINS SOMETHING
-//			for(Item i: temp) {
-//				System.out.println(i.toString());
-//			}
-			
-// NEITHER OF THESE WORK
-//			for(Item i: temp) bookS.remove(i);
-			if (bookS.removeAll(temp)) return true;
-			
-// The following should only loop once, but the data structure allows
-// for multiple books with the same name.
-//			for (Item i: temp) {
-//				//Remove itself from the keyword mapping
-////				Set<String> kwords = i.getKWset();
-////				for(String kw: kwords) {
-////					kwMap.get(kw).remove(i);
-////				}
-//				//Remove itself from the big bad set. 
-////				bookS.remove(i);
-//			}
-			
-			//Remove those books from  the title map
-
-			
-
-			return true;
+			// Remove self from other mappings
+			if (bookS.removeAll(temp)) {
+				for (Item i: temp) {
+					// Remove itself from maker map
+					String author = i.getMaker();
+					bMakerMap.get(author).remove(i);
+					// Remove itself from each kw's value
+					Set<String> kwords = i.getKWset();
+					for(String kw: kwords) kwMap.get(kw).remove(i);
+				}
+				success = true;
+			}
+			else success = false;
 		}
-		return false;
+		return success;
 	}
 	
 	// returns all of the books by the specified author
@@ -174,7 +161,29 @@ public class Library {
 	
 	// removes a music album from the library (only needed for Premium version)
 	public boolean removeMusicAlbum(String title) {
-		return false;
+		boolean success = false;
+		if (muTitleMap.containsKey(title)) {
+			//Get every book with that title
+			Set<Item> temp = muTitleMap.remove(title);
+			if (albumS.removeAll(temp)) {
+				for (Item i: temp) {
+					// Remove self from maker map
+					String band = i.getMaker();
+					muMakerMap.get(band).remove(i);
+					// Remove self from member map
+					Set<String> membr = ((MusicAlbum)i).getMemberSet();
+					for(String m: membr) {
+						Set<Item> itemsForMember = muMembMap.get(m);
+						itemsForMember.remove(i);
+					}
+					// Remove itself from each kw's value
+					Set<String> kwords = i.getKWset();
+					for(String kw: kwords) kwMap.get(kw).remove(i);
+				}
+				success = true;
+			}
+		}
+		return success;
 	}
 
 	// returns all of the music albums by the specified band
@@ -226,7 +235,27 @@ public class Library {
 
 	// removes a movie from the library (only needed for Premium version)
 	public boolean removeMovie(String title) {
-		return false;
+		boolean success = false;
+		if (moTitleMap.containsKey(title)) {
+			//Get every book with that title
+			Set<Item> temp = moTitleMap.remove(title);
+			if (movieS.removeAll(temp)) {
+				for (Item i: temp) {
+					// Remove self from maker map
+					String director = i.getMaker();
+					moMakerMap.get(director).remove(i);
+					// Remove self from member map
+					Set<String> membr = ((Movie)i).getCastSet();
+					for(String m: membr) moCastMap.get(m).remove(i);
+					// Remove itself from each kw's value
+					Set<String> kwords = i.getKWset();
+					for(String kw: kwords) kwMap.get(kw).remove(i);
+				}
+				success = true;
+			}
+			else success = false;
+		}
+		return success;
 	}
 	
 	// returns all of the movies by the specified director

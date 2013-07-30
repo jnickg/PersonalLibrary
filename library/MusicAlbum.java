@@ -60,6 +60,10 @@ class MusicAlbum extends Item {
 		return mem.toString();
 	}
 	
+	public Set<String> getMemberSet() {
+		return members;
+	}
+	
 	public void setMembers(String... musicians) {
 		members.clear();
 		for(String s: musicians) members.add(s + " ");
@@ -67,6 +71,6 @@ class MusicAlbum extends Item {
 	
 	public void addMembers(String... musicians) {
 		if(members.contains("nobody")) members.clear();
-		for(String s: musicians) members.add(s + " ");
+		for(String s: musicians) members.add(s);
 	}
 }

@@ -36,7 +36,7 @@ public abstract class Item
 	@Override
 	public int compareTo(Item other) {
 		int title  = this.title.compareTo(other.getTitle());
-		return title==0 ? this.maker.compareTo(other.getTitle()) : title;
+		return title==0 ? this.maker.compareTo(other.getMaker()) : title;
 	}
 	
 	@Override

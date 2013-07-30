@@ -59,6 +59,10 @@ class Movie extends Item {
 		for(String s: cast) cst.append(s + " ");
 		return cst.toString();
 	}	
+	
+	public Set<String> getCastSet() {
+		return cast;
+	}
 	public void setCast(String... actors) {
 		cast.clear();
 		for(String s: actors) cast.add(s + " ");
