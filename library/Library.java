@@ -14,7 +14,8 @@ public class Library {
 				moTitleMap, moMakerMap, moCastMap,
 				muTitleMap, muMakerMap, muMembMap,
 				kwMap;
-	private	Set<Item>			bookS, movieS, albumS;
+	private	Set<Item>
+				bookS, movieS, albumS;
 	
 /* Constructors */
 	public Library() {
@@ -139,13 +140,13 @@ public class Library {
 	public Item addMusicAlbum(String title, String band, int nSongs, String... keywords) {
 		MusicAlbum disAlbum = new MusicAlbum(title, band, nSongs, keywords);
 		
+		// Add it to master set
 		albumS.add(disAlbum);
 		
+		// Add it to relevant mappings
 		addToMap(muTitleMap, disAlbum, title);
 		addToMap(muMakerMap, disAlbum, band);
 		addToMap(kwMap, disAlbum, keywords);
-		
-		// Add it to the all the stuff..... 
 		
 		return disAlbum;
 	}
