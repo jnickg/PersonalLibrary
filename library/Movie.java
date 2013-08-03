@@ -38,7 +38,7 @@ class Movie extends Item {
 				+ "keywords: %s\n\n",
 				this.getMaker(),
 				this.getScenes(),
-				this.getCast(),
+				this.getContributors(),
 				this.getTitle(),
 				this.getKeywords()));
 		return toStr.toString();
@@ -50,30 +50,6 @@ class Movie extends Item {
 	}
 	public void setScenes(int scenes) {
 		this.scenes = scenes;
-	}
-
-/* Cast Methods */
-	public String getCast() {
-		// Add commas
-		StringBuilder cst = new StringBuilder();
-		for(String s: cast) cst.append(s + ", ");
-		String rtn = cst.toString();
-		// Trim extra commas
-		if(rtn.endsWith(", "));
-		rtn = rtn.substring(0, rtn.lastIndexOf(", "));
-		return rtn;
-	}	
-	
-	public Set<String> getCastSet() {
-		return cast;
-	}
-	public void setCast(String... actors) {
-		cast.clear();
-		for(String s: actors) cast.add(s + " ");
-	}
-	public void addtoCast(String... actors) {
-		if(cast.contains("nobody")) cast.clear();
-		for(String s: actors) cast.add(s);
 	}
 	
 }

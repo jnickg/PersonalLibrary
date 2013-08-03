@@ -156,7 +156,7 @@ public class Library {
 
 	// adds the specified band members to a music album
 	public void addBandMembers(Item album, String... members) {
-		((MusicAlbum)album).addMembers(members);
+		album.addContributors(members);
 		
 		for(String m: members) {
 			addToMap(muMembMap, album, m);
@@ -175,7 +175,7 @@ public class Library {
 					String band = i.getMaker();
 					muMakerMap.get(band).remove(i);
 					// Remove self from member map
-					Set<String> membr = ((MusicAlbum)i).getMemberSet();
+					Set<String> membr = i.getContribSet();
 					for(String m: membr) {
 						Set<Item> itemsForMember = muMembMap.get(m);
 						itemsForMember.remove(i);
@@ -230,7 +230,7 @@ public class Library {
 
 	// adds the specified actors to a movie
 	public void addCast(Item movie, String... members) {
-		((Movie)movie).addtoCast(members);
+		movie.addContributors(members);
 		
 		for(String m: members) {
 			addToMap(moCastMap, movie, m);
@@ -249,7 +249,7 @@ public class Library {
 					String director = i.getMaker();
 					moMakerMap.get(director).remove(i);
 					// Remove self from member map
-					Set<String> membr = ((Movie)i).getCastSet();
+					Set<String> membr = ((Movie)i).getContribSet();
 					for(String m: membr) moCastMap.get(m).remove(i);
 					// Remove itself from each kw's value
 					Set<String> kwords = i.getKWset();

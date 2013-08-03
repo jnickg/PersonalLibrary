@@ -38,7 +38,7 @@ class MusicAlbum extends Item {
 				+ "keywords: %s\n\n",
 				this.getMaker(),
 				this.getSongs(),
-				this.getMembers(),
+				this.getContributors(),
 				this.getTitle(),
 				this.getKeywords()));
 		return toStr.toString();
@@ -50,31 +50,5 @@ class MusicAlbum extends Item {
 	}
 	public void setSongs(int songs) {
 		this.songs = songs;
-	}
-	
-/* Members Methods */
-	public String getMembers() {
-		// Insert proper commas
-		StringBuilder mem = new StringBuilder();
-		for(String s: members) mem.append(s + ", ");
-		String rtn = mem.toString();
-		// Trim extra commas
-		if(rtn.endsWith(", "));
-		rtn = rtn.substring(0, rtn.lastIndexOf(", "));
-		return rtn;
-	}
-	
-	public Set<String> getMemberSet() {
-		return members;
-	}
-	
-	public void setMembers(String... musicians) {
-		members.clear();
-		for(String s: musicians) members.add(s + " ");
-	}
-	
-	public void addMembers(String... musicians) {
-		if(members.contains("nobody")) members.clear();
-		for(String s: musicians) members.add(s);
 	}
 }

@@ -12,12 +12,16 @@ public abstract class Item
 /* Variable Members */
 	public		String		title;
 	public		String		maker;
+	public		Set<String>	contributors;
 	public		Set<String> keywords;
 	
 /* Constructors */
 	Item() {
 		title = "";
 		maker = "";
+		
+		contributors = new TreeSet<>();
+		contributors.add("nobody");
 		
 		keywords = new TreeSet<>();
 		keywords.add("none");
@@ -26,6 +30,9 @@ public abstract class Item
 	Item(String tit, String mkr, String ... kw) {
 		title = tit;
 		maker = mkr;
+		
+		contributors = new TreeSet<>();
+		contributors.add("nobody");
 		
 		keywords = new TreeSet<>();
 		for(String s: kw) keywords.add(s);
@@ -75,8 +82,32 @@ public abstract class Item
 	public void setMaker(String maker) {
 		this.maker = maker;
 	}
+	
+/* Contributors Methods */
+	public Set<String> getContribSet() {
+		return contributors;
+	}
+	public void setContributors(String... actors) {
+		contributors.clear();
+		for(String s: actors) contributors.add(s + " ");
+	}
+	public void addContributors(String... actors) {
+		if(contributors.contains("nobody")) contributors.clear();
+		for(String s: actors) contributors.add(s);
+	}
 
 /* Keywords Methods */
+	public String getContributors() {
+		// Add commas
+		StringBuilder contrib = new StringBuilder();
+		for(String s: contributors) contrib.append(s + ", ");
+		String rtn = contrib.toString();
+		// Trim extra commas
+		if(rtn.endsWith(", "));
+		rtn = rtn.substring(0, rtn.lastIndexOf(", "));
+		return rtn;
+	}
+	
 	public String getKeywords() {
 		StringBuilder kw = new StringBuilder();
 		// Add all keywords
