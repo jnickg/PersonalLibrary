@@ -1,29 +1,19 @@
 package library;
 
-import java.util.Set;
-import java.util.TreeSet;
-
 class Movie extends Item {
 /* Variable Members */
 	public		int				scenes;
-	public		Set<String>		cast;
 
 /* Constructors */
 	public Movie() {
 		super();
 		
 		scenes = 0;
-		
-		cast = new TreeSet<>();
-		cast.add("nobody");
 	}
 	public Movie(String tit, String mkr, Integer scn, String... kw) {
 		super(tit, mkr, kw);
 		
 		scenes = scn;
-		
-		cast = new TreeSet<>();
-		cast.add("nobody");
 	}
 
 /* General Methods */

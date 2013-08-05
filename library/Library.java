@@ -9,11 +9,17 @@ import java.util.TreeSet;
 
 public class Library {
 /* Variable Members */
+	// Search maps
 	private	Map<String, Set<Item>>
+				// Book search maps
 				bTitleMap, bMakerMap,
+				// Movie search maps
 				moTitleMap, moMakerMap, moCastMap,
+				// MusicAlbum search maps
 				muTitleMap, muMakerMap, muMembMap,
+				// Keyword map for all items
 				kwMap;
+	// Master list
 	private	Set<Item>
 				bookS, movieS, albumS;
 	
@@ -39,10 +45,7 @@ public class Library {
 	
 /* general methods */
 	
-	/** Returns all of the items which have the specified keyword
-	 * @param	keyword	the keyword to be searched for
-	 * @return	a Collection of Items matching that keyword, otherwise null
-	 */
+	// returns all of the items which have the specified keyword
 	public Collection<Item> itemsForKeyword(String keyword) {
 		if (kwMap.containsKey(keyword)) return kwMap.get(keyword);
 		else return null;
@@ -53,6 +56,7 @@ public class Library {
 		out.print(item.toString());
 	}
 	
+	// general method for adding a new value to any number of keys, into a specific search map
 	private void addToMap(Map<String, Set<Item>> disMap, Item disValue, String... disKey) {
 		for(String k: disKey) {
 			if(!(disMap.containsKey(k))) {
@@ -81,7 +85,7 @@ public class Library {
 	
 /* book-related methods */
 	
-	// adds a book to the library
+	// adds a book to the library, its respective search maps, and returns it
 	public Item addBook(String title, String author, int nPages, String... keywords) {
 		Book disBook = new Book(title, author, nPages, keywords);
 		
@@ -90,7 +94,6 @@ public class Library {
 		addToMap(bTitleMap, disBook, title);
 		addToMap(bMakerMap, disBook, author);
 		addToMap(kwMap, disBook, keywords);
-		
 		
 		return disBook;
 	}
@@ -139,7 +142,7 @@ public class Library {
 	
 /* music-related methods */
 	
-	// adds a music album to the library
+	// adds a music album to the library, its respective search maps, and returns it
 	public Item addMusicAlbum(String title, String band, int nSongs, String... keywords) {
 		MusicAlbum disAlbum = new MusicAlbum(title, band, nSongs, keywords);
 		
@@ -213,7 +216,7 @@ public class Library {
 	
 /* movie-related methods */
 	
-	// adds a movie to the library
+	// adds a movie to the library, its respective search maps, and returns it
 	public Item addMovie(String title, String director, int nScenes, String... keywords) {
 		Movie disMovie = new Movie(title, director, nScenes, keywords);
 		
@@ -222,8 +225,6 @@ public class Library {
 		addToMap(moTitleMap, disMovie, title);
 		addToMap(moMakerMap, disMovie, director);
 		addToMap(kwMap, disMovie, keywords);
-		
-		// Add it to the all the stuff..... 
 		
 		return disMovie;
 	}

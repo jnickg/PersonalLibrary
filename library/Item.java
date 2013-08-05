@@ -40,26 +40,32 @@ public abstract class Item
 	
 /* General Methods */
 	
+	// Implementation of the Comparable interface is required to sort
+	// items correctly, based on Title first and then Maker
 	@Override
 	public int compareTo(Item other) {
 		int title  = this.title.compareTo(other.getTitle());
 		return title==0 ? this.maker.compareTo(other.getMaker()) : title;
 	}
 	
+	// All items must know how to print themselves
 	@Override
 	public abstract String toString();
 
 /* Search Methods */
+	// Deprecated
 	public boolean matchTit(String tit) {
 		if(title.equals(tit)) return true;
 		return false;
 	}
 	
+	// Deprecated
 	public boolean matchMkr(String mkr) {
 		if(maker.equals(mkr)) return true;
 		return false;
 	}
 	
+	// Deprecated
 	public boolean matchKw(String ... kw) {
 		for(String s: kw)	if(keywords.contains(s.toLowerCase()))	return true;
 		return false;
@@ -84,19 +90,13 @@ public abstract class Item
 	}
 	
 /* Contributors Methods */
+	// Returns the contributors as a set of strings
 	public Set<String> getContribSet() {
 		return contributors;
 	}
-	public void setContributors(String... actors) {
-		contributors.clear();
-		for(String s: actors) contributors.add(s + " ");
-	}
-	public void addContributors(String... actors) {
-		if(contributors.contains("nobody")) contributors.clear();
-		for(String s: actors) contributors.add(s);
-	}
-
-/* Keywords Methods */
+	
+	// Returns an item's contributors as a single string, separated by
+	// commas.
 	public String getContributors() {
 		// Add commas
 		StringBuilder contrib = new StringBuilder();
@@ -108,6 +108,26 @@ public abstract class Item
 		return rtn;
 	}
 	
+	// Clears existing contributors and then adds new ones.
+	public void setContributors(String... actors) {
+		contributors.clear();
+		for(String s: actors) contributors.add(s + " ");
+	}
+	
+	// Adds existing contributors
+	public void addContributors(String... actors) {
+		if(contributors.contains("nobody")) contributors.clear();
+		for(String s: actors) contributors.add(s);
+	}
+
+/* Keywords Methods */
+	// Returns a set of Kanye Wests. As if one weren't too many.
+	public Set<String>getKWset() {
+		return keywords;
+	}
+
+	// Returns an item's keywords as a single string, separated by
+	// commas.
 	public String getKeywords() {
 		StringBuilder kw = new StringBuilder();
 		// Add all keywords
@@ -119,11 +139,6 @@ public abstract class Item
 		return rtn;
 	}
 	
-	// Returns a set of Kanye Wests. As if one weren't too many.
-	public Set<String>getKWset() {
-		return keywords;
-	}
-
 	public void setKeywords(String ... kw) {
 		keywords.clear();
 		for(String s: kw) keywords.add(s);

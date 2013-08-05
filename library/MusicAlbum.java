@@ -1,29 +1,19 @@
 package library;
 
-import java.util.Set;
-import java.util.TreeSet;
-
 class MusicAlbum extends Item {
 /* Variable Members */
 	public		int				songs;
-	public		Set<String>		members;
 
 /* Constructors */
 	public MusicAlbum() {
 		super();
 		
 		songs = 0;
-		
-		members = new TreeSet<>();
-		members.add("nobody");
 	}
 	public MusicAlbum(String tit, String mkr, Integer sng, String... kw) {
 		super(tit, mkr, kw);
 		
 		songs = sng;
-		
-		members = new TreeSet<>();
-		members.add("nobody");
 	}
 	
 /* General Methods */
